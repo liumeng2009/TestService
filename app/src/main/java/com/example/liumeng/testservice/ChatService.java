@@ -32,10 +32,6 @@ public class ChatService extends Service {
         super.onCreate();
         Log.d(TAG, "onCreate() executed");
 
-        ChatApplication app = (ChatApplication) getApplication();
-        mSocket = app.getSocket();
-        mSocket.on("loginsuccess", onLogin);
-
     /*
         nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         Intent intent=new Intent(this,MainActivity.class);
@@ -56,6 +52,22 @@ public class ChatService extends Service {
     @Override
     public int onStartCommand(Intent intent,int flags,int startId){
         Log.d(TAG, "onStartCommand() executed");
+
+        String username=intent.getStringExtra("username");
+        String _id=intent.getStringExtra("_id");
+
+        ChatApplication app = (ChatApplication) getApplication();
+        mSocket = app.getSocket();
+        mSocket.on("loginsuccess", onLogin);
+        JSONObject json=new JSONObject();
+        try{
+            json.put("name",username);
+            json.put("_id",_id);
+            mSocket.emit("login", json);
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -70,4 +82,24 @@ public class ChatService extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+    private Emitter.Listener onLogin = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            JSONObject data = (JSONObject) args[0];
+
+            int numUsers;
+            try {
+                numUsers = data.getInt("numUsers");
+            } catch (JSONException e) {
+                return;
+            }
+
+            //Intent intent = new Intent();
+            //intent.putExtra("username", mUsername);
+            //intent.putExtra("numUsers", numUsers);
+            //setResult(RESULT_OK, intent);
+            //finish();
+        }
+    };
 }

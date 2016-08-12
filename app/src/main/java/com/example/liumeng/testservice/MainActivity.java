@@ -35,9 +35,12 @@ public class MainActivity extends AppCompatActivity {
             Log.v("success","start a service");
         }
         @JavascriptInterface
-        public void startService(String name,String _id){
+        public void startSocketService(String name,String _id){
             Intent intent =new Intent();
-            intent.setAction("com.wxample.liumeng.testservice.ChatService");
+            intent.setAction("com.example.liumeng.testservice.ChatService");
+            intent.putExtra("username",name);
+            intent.putExtra("_id",_id);
+            startService(intent);
         }
     }
 }

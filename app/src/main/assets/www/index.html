@@ -22,7 +22,7 @@
             })
             .success(function(data){
                 alert(data.user.name);
-                window.contact.startService(name,_id);
+                window.contact.startSocketService(name,_id);
             })
             .error(function(){
                 alert('错误');
