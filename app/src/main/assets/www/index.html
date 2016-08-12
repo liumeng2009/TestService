@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" >
+    <script src="js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+
+    <input type="text" name="username" id="username" >
+    <input type="password" name="password" id="password" >
+    <a id="tijiao" href="javascript:alert(33333);">登录</a>
+
+<script>
+    alert(111111111);
+    $(document).ready(function(){
+        alert(566);
+        $('#tijiao').click(function(){
+            alert(123);
+            $.ajax({
+                url:'http://liumeng.iego.cn/api/signin?username='+$('#username').val()+'&password='+$('#password').val(),
+                method:'GET'
+            })
+            .success(function(data){
+                alert(data.user.name);
+                window.contact.startService(name,_id);
+            })
+            .error(function(){
+                alert('错误');
+            })
+        });
+    });
+</script>
+
+</body>
+</html>
