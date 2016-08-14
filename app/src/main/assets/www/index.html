@@ -6,14 +6,12 @@
 </head>
 <body>
 
-    <input type="text" name="username" id="username" >
-    <input type="password" name="password" id="password" >
-    <a id="tijiao" href="javascript:alert(33333);">登录</a>
+    <input type="text" name="username" id="username" value="dreams" >
+    <input type="password" name="password" id="password" value="123456" >
+    <a id="tijiao" href="javascript:void(0)">登录</a>
 
 <script>
-    alert(111111111);
     $(document).ready(function(){
-        alert(566);
         $('#tijiao').click(function(){
             alert(123);
             $.ajax({
@@ -21,8 +19,7 @@
                 method:'GET'
             })
             .success(function(data){
-                alert(data.user.name);
-                window.contact.startSocketService(name,_id);
+                window.contact.startSocketService(data.user.name,data.user._id);
             })
             .error(function(){
                 alert('错误');

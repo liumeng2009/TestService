@@ -1,4 +1,4 @@
-package com.example.liumeng.socketio;
+package com.example.liumeng.testservice;
 
 import android.app.Application;
 

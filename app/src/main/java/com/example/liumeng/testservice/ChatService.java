@@ -1,18 +1,15 @@
 package com.example.liumeng.testservice;
 
-import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.example.liumeng.socketio.*;
+
+import io.socket.client.Socket;
 
 public class ChatService extends Service {
 
@@ -31,6 +28,7 @@ public class ChatService extends Service {
     public void onCreate(){
         super.onCreate();
         Log.d(TAG, "onCreate() executed");
+
 
     /*
         nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
@@ -55,10 +53,8 @@ public class ChatService extends Service {
 
         String username=intent.getStringExtra("username");
         String _id=intent.getStringExtra("_id");
-
         ChatApplication app = (ChatApplication) getApplication();
         mSocket = app.getSocket();
-        mSocket.on("loginsuccess", onLogin);
         JSONObject json=new JSONObject();
         try{
             json.put("name",username);
@@ -68,6 +64,11 @@ public class ChatService extends Service {
         catch (JSONException e){
             e.printStackTrace();
         }
+        //mSocket.on("loginsuccess", onLogin);
+
+
+        //ChatApplication app = (ChatApplication) getApplication();
+        //mSocket = app.getSocket();
         return super.onStartCommand(intent, flags, startId);
     }
 
