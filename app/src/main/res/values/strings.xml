@@ -2,4 +2,7 @@
     <string name="app_name">TestService</string>
     <string name="button_start_service">开启服务</string>
     <string name="button_stop_service">销毁服务</string>
+    <string name="disconnect">断开连接，请检查网络连接</string>
+    <string name="error_connect">连接失败</string>
+    <string name="error_sqlite">本地存储失败</string>
 </resources>

@@ -19,7 +19,7 @@
                 method:'GET'
             })
             .success(function(data){
-                window.contact.startSocketService(data.user.name,data.user._id);
+                window.contact.startSocketService(data.user.name,data.user._id,data.user.image,data.user.token);
             })
             .error(function(){
                 alert('错误');
